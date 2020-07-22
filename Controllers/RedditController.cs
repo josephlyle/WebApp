@@ -17,20 +17,20 @@ namespace WebApp1.Controllers
         public async System.Threading.Tasks.Task<IActionResult> IndexAsync()
         {
             // reddit.net
-            List<string> spacePicArr = new List<string> { };
+            List<System.Tuple<string, string, string>> topSpaceArr = new List<System.Tuple<string, string, string>> {};
             var reddit = new RedditClient(appId: "dDjh9osAv4Qf0g", appSecret: "xU2VIooyjOh2z8YQ0-p775K1y-k", refreshToken: "576921060013-oDTQSRthMHgRIYA5XuhszUv4-1k");
-            var space = reddit.Models.Subreddits.About("spaceporn");
-            var topPost = reddit.Models.Listings.Top(new TimedCatSrListingInput(), "spaceporn").Data.Children;
-            foreach(var x in topPost)
+            var topSpacePosts = reddit.Models.Listings.Top(new TimedCatSrListingInput(limit: 100), "spaceporn").Data.Children;
+            foreach (var x in topSpacePosts)
             {
-                spacePicArr.Add(x.Data.URL);
+                var tuple = new System.Tuple<string, string, string>(x.Data.Title, x.Data.URL, x.Data.Permalink);
+                topSpaceArr.Add(tuple);
             }
-            return Ok(spacePicArr);
+            return Ok(topSpaceArr);
         }
 
         /*https://www.reddit.com/api/v1/authorize?client_id=dDjh9osAv4Qf0g&response_type=code&state=randomstate&redirect_uri=http://localhost:5001/Reddit.NET/oauth2Redirect&duration=permanent&scope=[read]
-        http://localhost:5001/Reddit.NET/oauth2Redirect
-         used to get refresh link
+            http://localhost:5001/Reddit.NET/oauth2Redirect
+            used to get refresh link
          */
     }
 }

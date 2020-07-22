@@ -24,3 +24,21 @@ code {
 .git, .reddit {
     color: white;
 }
+
+footer p {
+    color: #8B8B8B;
+    margin: 0;
+}
+
+.foot {
+    font-size:15px;
+}
+
+.pageDesc {
+    color: #8B8B8B;
+    font-family: Verdana
+}
+
+.reddit h1 {
+    font-size: 25px;
+}
