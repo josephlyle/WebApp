@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebApp1.Interfaces;
+using WebApp1.Repos;
+using WebApp1.Services;
 
 namespace WebApp1
 {
@@ -30,6 +33,8 @@ namespace WebApp1
             });
 
             services.AddSwaggerGen();
+            services.AddTransient<IRedditService, RedditService>();
+            services.AddTransient<IRedditRepo, RedditRepo>();
 
             services.AddMvc().AddNewtonsoftJson();
         }
