@@ -1,20 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Octokit;
+using WebApp1.Interfaces;
 
 namespace WebApp1.Controllers
 {
     [ApiController]
     public class GitHubController : ControllerBase
     {
+        private readonly IGitHubService _gitHubService;
+        public GitHubController(IGitHubService gitHubService)
+        {
+            _gitHubService = gitHubService;
+        }
+
         [HttpGet]
         [Route("api/GitHubController")]
         public async System.Threading.Tasks.Task<IActionResult> IndexAsync()
-        {
-            var github = new GitHubClient(new ProductHeaderValue("MyAmazingApp"));
-            var user = await github.User.Get("josephlyle");
-            var user2 = await github.Repository.GetAllForUser("josephlyle");
-  
-            return Ok(user2);
+        {  
+            var test = await _gitHubService.getRepos("josephlyle");
+            return Ok(test);
         }
     }
 }

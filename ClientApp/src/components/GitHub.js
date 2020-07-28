@@ -9,14 +9,11 @@ export class GitHub extends Component {
     }
 
     async componentDidMount() {
-        /*
         const response = await fetch('api/GitHubController');
         const data = await response.json();
         console.log(data);
         
         this.setState({ repos: data, loading: false});
-        */
-        this.setState({ loading: false });
     }
 
     async printRepos() {

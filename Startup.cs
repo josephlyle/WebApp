@@ -35,6 +35,8 @@ namespace WebApp1
             services.AddSwaggerGen();
             services.AddTransient<IRedditService, RedditService>();
             services.AddTransient<IRedditRepo, RedditRepo>();
+            services.AddTransient<IGitHubService, GitHubService>();
+            services.AddTransient<IGitHubRepo, GitHubRepo>();
 
             services.AddMvc().AddNewtonsoftJson();
         }

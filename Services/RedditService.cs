@@ -1,8 +1,6 @@
-﻿using Reddit.Inputs;
+﻿
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using WebApp1.Interfaces;
 
 namespace WebApp1.Services
@@ -18,8 +16,9 @@ namespace WebApp1.Services
         {
             // reddit.net
             List<Tuple<string, string, string>> topPostArray = new List<Tuple<string, string, string>> { };
-            var topPosts = (_redditRepo.getSubTopPosts(subRedditName, num)).Data.Children;
-            topPosts.ForEach(x => { 
+            // get a list of the top posts and grab the info we care about
+            (_redditRepo.getTopPosts(subRedditName, num)).Data.Children
+                .ForEach(x => { 
                 var tuple = new Tuple<string, string, string>(x.Data.Title, x.Data.URL, x.Data.Permalink);
                 topPostArray.Add(tuple);
             });
