@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Octokit;
+using System;
 using WebApp1.Interfaces;
 
 namespace WebApp1.Controllers
@@ -8,17 +9,18 @@ namespace WebApp1.Controllers
     public class GitHubController : ControllerBase
     {
         private readonly IGitHubService _gitHubService;
+        
         public GitHubController(IGitHubService gitHubService)
         {
             _gitHubService = gitHubService;
         }
 
-        [HttpGet]
-        [Route("api/GitHubController")]
-        public async System.Threading.Tasks.Task<IActionResult> IndexAsync()
-        {  
-            var test = await _gitHubService.getRepos("josephlyle");
-            return Ok(test);
+        [HttpPost]
+        [Route("api/GitHubController/getUsersRepos")]
+        public async System.Threading.Tasks.Task<IActionResult> IndexAsync([FromBody] string user)
+        {
+            var repos = await _gitHubService.getRepos("josephlyle");
+            return Ok(repos);
         }
     }
 }

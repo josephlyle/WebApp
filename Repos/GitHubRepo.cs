@@ -14,10 +14,12 @@ namespace WebApp1.Repos
         {
             github = new GitHubClient(new ProductHeaderValue("MyAmazingApp"));
         }
-
-        public Task<IReadOnlyList<Repository>> getRepos(string user)
+        
+        async public Task<IReadOnlyList<Repository>> getRepos(string user)
         {
-            return github.Repository.GetAllForUser(user);
+            var repos = await github.Repository.GetAllForUser(user);
+            //tast.GetEnumerator();
+            return repos;
         }
     }
 }

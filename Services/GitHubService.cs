@@ -1,7 +1,7 @@
-﻿using Octokit;
+﻿using Microsoft.AspNetCore.Mvc;
+using Octokit;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using WebApp1.Interfaces;
 
@@ -15,9 +15,25 @@ namespace WebApp1.Services
             _getHubRepo = getHubRepo;
         }
 
-        public Task<IReadOnlyList<Repository>> getRepos(string user)
+        public async Task<IEnumerable<Repository>> getRepos(string user)
         {
-            return _getHubRepo.getRepos(user);
+            var repositories = await _getHubRepo.getRepos(user);
+           // List<Repository> repoList = new List<Repository>(repositories); // convert IReadOnlyList into a List
+            return repositories;
+            /*
+            List<Dictionary<string, string>> repoDict = new List<Dictionary<string, string>>();
+            foreach (var repo in repoList)
+            {
+                Dictionary<string, string> dict = new Dictionary<string, string>
+                {
+                    { "repoName", repo.Name },
+                    { "desc", repo.Description },
+                    { "url", repo.Url }
+                };
+                repoDict.Add(dict);
+            }
+            return repoDict;
+            */
         }
     }
 }
