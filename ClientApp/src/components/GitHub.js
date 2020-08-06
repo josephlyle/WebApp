@@ -52,11 +52,12 @@ export class GitHub extends Component {
                     </form>
                     
                     {this.state.allRepos.map(repo => (
-                        <div className="repolist" key={repo.nodeId}>
+                        <div className="repoList" key={repo.nodeId}>
                             <ul>
-                                <li>{repo.name}</li>
-                                <li>{repo.description}</li>
-                                <li>{repo.htmlUrl}</li>  
+                                <li className="repoName">{repo.name}</li>
+                                <li className="repoDesc">{repo.description}</li>
+                                <a className="repoUrl" href={repo.htmlUrl} target="_blank">open in github</a>
+                                <p className="readMe">README</p>
                             </ul>
                         </div>
                     ))}           

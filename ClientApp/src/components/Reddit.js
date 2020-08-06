@@ -36,7 +36,7 @@ export class Reddit extends Component {
                 <h1> {title} </h1>  
                 <img className="Img" src={img} width="100%" height="100%" alt=""/> 
                 <footer>
-                    <a href={permaLink}>click here to see original post</a>
+                    <a href={permaLink} target="_blank">open github in another tab</a>
                     <p className="foot"> pool: /r/spaceporn </p>
                 </footer>             
             </div>
