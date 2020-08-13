@@ -9,8 +9,8 @@ code {
   border-color: #1861ac;
 }
 
-#root {
-    background-color: #282c34;
+#root { 
+    background-color: #494d5f;
     min-height: 100vh;
     font-size: calc(10px + 1vmin);
     text-align: center;
@@ -44,7 +44,7 @@ footer p {
 }
 
 .repoList {
-    background-color: #5E6272;
+    background-color: #6e7285;
     border-radius: 10px;
     max-width: 100vh;
     padding: 5px;
@@ -56,28 +56,45 @@ footer p {
     text-align: left;
     list-style-type: none;
     padding-top: 10px;
+    color: #282c34;
 }
 
 .repoName {
     font-size: 25px;
-    font-family: Arial, Helvetica, sans-serif;
+    color: #d4d4dc;
 }
 
 .repoDesc {
-    color: #282c34;
-    padding-left: 10px;
-}
-
-.repoUrl {
-    color: #12458E;
     padding-left: 10px;
 }
 
 .readMe {
-    text-align: right;
+    color: #a0d2eb;
+    padding-left: 10px;
+    font-size: 17px;
+}
+
+.repoUrl {
+    font-size: 17px;
+    color: #d4d4dc;
     padding-right: 10px;
-    padding-top: 10px;
-    margin-bottom: -10px;
-    font-size: 15px;
+}
+
+.urlP{
+    text-align: right;
+}
+
+.btn {
+    background-color: #a0d2eb;
     color: #282c34;
+}
+
+.gitLoading {
+    color: #FFF;
+}
+
+.loadingimg {
+    height: 64px;
+    width: 64px;
+    background: url('https://i.ibb.co/p3G5XZm/joey-p-sprite-sheet.png') 0px 0px;
 }

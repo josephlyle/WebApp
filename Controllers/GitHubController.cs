@@ -19,7 +19,7 @@ namespace WebApp1.Controllers
         [Route("api/GitHubController/getUsersRepos")]
         public async System.Threading.Tasks.Task<IActionResult> IndexAsync([FromBody] string user)
         {
-            var repos = await _gitHubService.getRepos("josephlyle");
+            var repos = await _gitHubService.getRepos(user);
             return Ok(repos);
         }
     }
