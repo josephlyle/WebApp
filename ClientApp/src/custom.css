@@ -1,19 +1,10 @@
-
-code {
-  color: #E01A76;
-}
-
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
-#root { 
+#root {
     background-color: #494d5f;
+    /* background: linear-gradient(0deg, #494d5f 0%,#000000 130%); */
     min-height: 100vh;
     font-size: calc(10px + 1vmin);
     text-align: center;
+    --pixel-size: 2;
 }
 
 .home { 
@@ -68,23 +59,35 @@ footer p {
     padding-left: 10px;
 }
 
-.readMe {
+.repoUrl {
     color: #a0d2eb;
     padding-left: 10px;
-    font-size: 17px;
+    font-size: 15px;
 }
 
-.repoUrl {
+.readMe {
     font-size: 17px;
-    color: #d4d4dc;
-    padding-right: 10px;
+    color: #a0d2eb;
+    padding-right: 15px;
+    margin-bottom: -10px;
+    cursor: pointer;
 }
 
-.urlP{
+.readMeExpandable {
+    background: #d4d4dc;
+    color: #000;
+    border-radius: 10px;
+    margin-left: 25vh;
+    text-align: left;
+    padding: 25px;
+}
+
+.urlP {
     text-align: right;
 }
 
 .btn {
+    border-color: #a0d2eb;
     background-color: #a0d2eb;
     color: #282c34;
 }
@@ -93,8 +96,47 @@ footer p {
     color: #FFF;
 }
 
-.loadingimg {
-    height: 64px;
-    width: 64px;
-    background: url('https://i.ibb.co/p3G5XZm/joey-p-sprite-sheet.png') 0px 0px;
+.joey {
+    width: calc(64px * var(--pixel-size));
+    height: calc(64px * var(--pixel-size));
+    overflow: hidden;
+    margin-left: 275px;
+    margin-top: -65px;
+    position: absolute;
+}
+
+.pixelart {
+    image-rendering: optimizeSpeed; /* STOP SMOOTHING, GIVE ME SPEED  */
+    image-rendering: -moz-crisp-edges; /* Firefox */
+    image-rendering: pixelated; /* Chrome */
+    -ms-interpolation-mode: nearest-neighbor; /* IE8+ */
+}
+
+.joey_run_spritesheet {
+    animation: moveSpritesheet 500ms steps(4) infinite;
+    width: calc(256px * var(--pixel-size));
+}
+
+.joey_idle_spritesheet {
+    animation: moveSpritesheetPause 4s steps(4) infinite;
+    width: calc(256px * var(--pixel-size));
+}
+
+@keyframes moveSpritesheet {
+    100% {
+        transform: translate3d(-100%,0,0);
+    }
+}
+
+@keyframes moveSpritesheetPause { /* for blinking animation */
+    95% {
+        transform: translate3d(0px,0,0);
+    }
+    100% {
+        transform: translate3d(-100%,0,0);
+    }  
+}
+
+.joey_run2 {
+    top: -100px;
 }

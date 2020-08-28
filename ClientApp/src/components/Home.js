@@ -5,8 +5,8 @@ export class Home extends Component {
 
   render () {
     return (
-      <div className="home">
-            <h1> and that's the waaaaaaaay the news goes</h1>
+        <div className="home">
+
       </div>
     );
   }
