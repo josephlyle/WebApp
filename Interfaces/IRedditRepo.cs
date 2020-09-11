@@ -8,6 +8,6 @@ namespace WebApp1.Interfaces
 {
     public interface IRedditRepo
     {
-        public Reddit.Things.PostContainer getTopPosts(string subRedditName, int num);
+        public Reddit.Things.PostContainer getHotPosts(string subRedditName, int num);
     }
 }

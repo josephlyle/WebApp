@@ -14,6 +14,8 @@
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Protocols.NewtonsoftJson" Version="3.1.6" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.6" />
     <PackageReference Include="Octokit" Version="0.48.0" />
+    <PackageReference Include="Polly" Version="7.2.1" />
+    <PackageReference Include="Polly.Caching.Memory" Version="3.0.2" />
     <PackageReference Include="Reddit" Version="1.4.0" />
     <PackageReference Include="RedditSharp" Version="2.0.0-CI00075" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.1" />

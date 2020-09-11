@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Reddit;
-using System.Collections.Generic;
-using Reddit.Inputs;
 using WebApp1.Interfaces;
 
 namespace WebApp1.Controllers
@@ -19,7 +16,10 @@ namespace WebApp1.Controllers
         [Route("api/RedditController")]
         public ActionResult Index()
         {
-            var topPosts = _redditService.getTopPosts("spaceporn", 100);
+            var topPosts = _redditService.getHotPosts("spaceporn", 100);
+// TODO: create another one of these so we can combine these
+            //var topPostsEarth = _redditService.getTopPosts("earthporn", 100);
+
             return Ok(topPosts);
         }
     }

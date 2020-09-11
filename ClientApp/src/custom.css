@@ -5,6 +5,7 @@
     font-size: calc(10px + 1vmin);
     text-align: center;
     --pixel-size: 2;
+    padding-bottom: 50px;
 }
 
 .home { 
@@ -19,19 +20,16 @@
 footer p {
     color: #8B8B8B;
     margin: 0;
+    font-size: 15px;
 }
 
-.foot {
-    font-size:15px;
-}
-
-.pageDesc {
-    color: #8B8B8B;
-    font-family: Verdana
+footer a {
+    color: #a0d2eb;
 }
 
 .reddit h1 {
     font-size: 25px;
+    color: #d4d4dc;
 }
 
 .repoList {
@@ -41,6 +39,8 @@ footer p {
     padding: 5px;
     margin: 20px;
     font-family: "Lucida Console", Courier, monospace;
+    position: relative;
+    z-index: 1;
 }
 
 .repoList ul {
@@ -70,20 +70,38 @@ footer p {
     color: #a0d2eb;
     padding-right: 15px;
     margin-bottom: -10px;
+    text-align: right;
+}
+
+.readMe_right-align {
+    display: inline-block;
     cursor: pointer;
+}
+
+.repoUrl:hover, .readMe_right-align:hover {
+    color: #d4d4dc;
 }
 
 .readMeExpandable {
     background: #d4d4dc;
-    color: #000;
+    color: #282c34;
     border-radius: 10px;
     margin-left: 25vh;
     text-align: left;
     padding: 25px;
+    transform-origin: 70vh -100px;
+    animation: readMeSlide .3s;
 }
 
-.urlP {
-    text-align: right;
+.readMeExpandableClose {
+    background: #d4d4dc;
+    color: #282c34;
+    border-radius: 10px;
+    margin-left: 25vh;
+    text-align: left;
+    padding: 25px;
+    transform-origin: 70vh -100px;
+    animation: readMeSlideClose .5s;
 }
 
 .btn {
@@ -91,17 +109,24 @@ footer p {
     background-color: #a0d2eb;
     color: #282c34;
 }
-
-.gitLoading {
+.btn:hover {
+    background-color: #9052bc;
+    border-color: #9052bc;
     color: #FFF;
+}
+.btn:focus {
+    box-shadow: none;
+}
+.btn:active {
+    animation: btnFeedback 0.1s;
 }
 
 .joey {
     width: calc(64px * var(--pixel-size));
     height: calc(64px * var(--pixel-size));
     overflow: hidden;
-    margin-left: 275px;
-    margin-top: -65px;
+    margin-left: -100px;
+    margin-top: -75px;
     position: absolute;
 }
 
@@ -122,6 +147,20 @@ footer p {
     width: calc(256px * var(--pixel-size));
 }
 
+.redditImg{ 
+    max-height: 100vh;
+}
+
+@keyframes btnFeedback {
+    50% {
+        transform: scale(.5);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
 @keyframes moveSpritesheet {
     100% {
         transform: translate3d(-100%,0,0);
@@ -137,6 +176,25 @@ footer p {
     }  
 }
 
-.joey_run2 {
-    top: -100px;
+@keyframes readMeSlide {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: translate3d(0,-100px,0);
+        transform: scale(1);
+    }
+}
+
+@keyframes readMeSlideClose {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(0);
+        transform: translate3d(0,-100px,0);
+    }
 }

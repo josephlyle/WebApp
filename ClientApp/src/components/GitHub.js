@@ -1,102 +1,121 @@
 ﻿import React, { Component } from 'react';
-
-    //    -- TODO flow of github component:
-    // enter in a username
-    // display repos of that username
-    // click on a repo to get the readme.
+import SearchFormGitHub from './SearchFormGitHub';
 
 export class GitHub extends Component {
-
     constructor(props) {
         super(props);
-        this.state = { allRepos: null, user: 'josephlyle', repo: null, loading: true };
+        this.state = { allRepos: null, user: 'josephlyle', repo: null, loading: true, error: false };
     }
 
     async componentDidMount() {
         this.setState({ loading: false }); // on page load -- go to my github
-        this.handleSubmit(null);
+        this.handleSubmit(null); // let's page preload whatever default is in the user prop
     }
 
     handleChange(event) { // enter username
         this.setState({ user: event.target.value });
-    }
+    }   
 
     async handleSubmit(event) { // fetch github user
+        console.log("check:", this.state.user);
         if (event) { event.preventDefault(); } // if statement let's handleSubmit be called on pageload before an event actually happens
         const response = await fetch('api/GitHubController/getUsersRepos', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(this.state.user)
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(this.state.user)
         });
-        const data = await response.json();
-        this.setState({ allRepos: data, loading: false });
+        try {
+            var data = await response.json();
+            this.setState({ allRepos: data, loading: false, error: false });  
+        } catch { // if user doesn't exist catch it
+            this.setState({ allRepos: null, loading: false, error: true });
+        }
     }
 
     async readMeClick(repoName, repoId) { // "README" dropdown that displays readme
         if (document.getElementById(repoName) == null) { // if the element doesn't exist yet create it
             const response = await fetch('https://raw.githubusercontent.com/' + this.state.user + '/' + repoName + '/master/README.md');
             const readMe = await response.text();
-            //create div containing the readMe text
-            //var div = document.createElement('div');
-            //div.id = repoName; //used to remove if clicked again
-            //div.className = "readMeExpandable"; //used for styling
-            //div.appendChild(document.createTextNode(readMe));
-            //document.getElementById(repoId).appendChild(div);
 
             var dom = document.createElement('div');
             dom.innerHTML = readMe;
             dom.className = "readMeExpandable"; //used for styling
             dom.id = repoName;
             document.getElementById(repoId).appendChild(dom);
-
+            
         } else { // if the element does exist remove it
-            var element = document.getElementById(repoName);
-            element.parentNode.removeChild(element);
-        }         
+            var elementToClose = document.getElementById(repoName);
+            elementToClose.className = "readMeExpandableClose"; // add this classname so css can play a closing animation
+
+            // pause for how long the css animation takes so readMeExpandableClose animation can play out then remove the element
+            setTimeout(function () {
+                if (elementToClose.parentNode) {
+                    elementToClose.parentNode.removeChild(elementToClose);
+                }
+            }, 200); 
+
+            // smoothing slideup for the rest of the elements
+            var ele = document.getElementById(repoId).nextElementSibling;
+            for (var i = 0; i < this.state.allRepos.length; i++) {
+                if (!ele) { break; }
+                this.slideElement(ele.id, (elementToClose.offsetHeight * -1));
+                ele = ele.nextElementSibling;
+            }
+        }        
+    }
+
+    // function to make the other dom elements slide back smoothly when deleting the readme element.
+    async slideElement(elementId, heightToSlide) {
+        var element = document.getElementById(elementId);
+        element.animate([
+            // keyframes
+            { transform: 'translateY(' + heightToSlide + 'px)' }
+        ], {
+            // timing options
+            duration: 200
+        });
     }
 
     render() {
-        if (this.state.allRepos != null) { // if check doesn't work inside return
-            // TODO: make the readme a clickable event that calls the readMe() function
+        if (this.state.allRepos != null) {
             return (
                 <div className="git">
-                    <form id="gitHubForm" className="form-inline mx-auto" onSubmit={this.handleSubmit.bind(this)}>
+                    {/*
+                    <form className="form-inline mx-auto" onSubmit={this.handleSubmit.bind(this)}>
                         <input id="usernameInput" value={this.state.user} onChange={this.handleChange.bind(this)} className="form-control mb-5" type="text" placeholder="GitHub Username" />
-                        <input type="submit" className="btn btn-primary ml-2 mb-5" value="search" />
+                        <input type="submit" className="btn ml-2 mb-5" value="search" />
                         <div className="joey">
-                            <img className="joey_idle_spritesheet pixelart" src="https://i.ibb.co/2PsbRmR/joey-p-loading.png" alt="cute alien" />
+                            <img className="joey_idle_spritesheet pixelart" src="https://i.ibb.co/2PsbRmR/joey-p-loading.png" alt="my mascot" />
                         </div>
                     </form>
-                    
+                    */}
+                    <SearchFormGitHub loading={this.state.loading} user={this.state.user}
+                        handleSubmit={this.handleSubmit.bind(this)} handleChange={this.handleChange.bind(this)}
+                    />
                     {this.state.allRepos.map(repo => (
-                        <div key={repo.nodeId} id={repo.nodeId}> {/* wrap with this div so we can append another div inside */ }
+                        <div key={repo.nodeId} id={repo.nodeId}> {/* wrap with this div so we can append another div inside when expanding readMe (include id so we know which one to append to) */ }
                             <div className="repoList">
                                 <ul>
                                     <li className="repoName">{repo.name}</li>
                                     <li className="repoDesc">{repo.description}</li>     
                                     <p><a className="repoUrl" href={repo.htmlUrl} target="_blank">open in github</a></p>
-                                    <p className="readMe urlP" onClick={this.readMeClick.bind(this, repo.name, repo.nodeId)}>README</p>
+                                    <div className="readMe"><p className="readMe_right-align" onClick={this.readMeClick.bind(this, repo.name, repo.nodeId)}>README</p></div>
                                 </ul>
                             </div>
-                            {/* <div id={repo.name}></div>  so each repoList div has a unique id to append the readme to if clicked */}
                         </div>
                     ))} 
                 </div>     
             );
         } else {
             return (
-                <div className="gitLoading">   
-                    <form id="gitHubForm" className="form-inline mx-auto" onSubmit={this.handleSubmit.bind(this)}>
-                        <input id="usernameInput" value={this.state.user} onChange={this.handleChange.bind(this)} className="form-control mb-5" type="text" placeholder="GitHub Username" />
-                        <input type="submit" className="btn btn-primary ml-2 mb-5" value="search" />
-                        <div className="joey joey_loading">
-                            <img className="joey_run_spritesheet pixelart" src="https://i.ibb.co/B4JHWTt/joey-p-loading.png" alt="cute alien" />
-                        </div>
-                    </form>
-                    loading     
+                <div className="git">
+                    <SearchFormGitHub loading={this.state.loading} user={this.state.user}
+                        handleSubmit={this.handleSubmit.bind(this)} handleChange={this.handleChange.bind(this)}
+                    />
+                    loading
                 </div> 
             );
         }
