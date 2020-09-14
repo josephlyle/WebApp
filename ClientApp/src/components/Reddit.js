@@ -40,6 +40,7 @@ export class Reddit extends Component {
                 </div>
             );
         }
+        // if the picArray is exhausted
         if (this.state.picArray == null) {
             return(
                 <div>You Won!
@@ -48,6 +49,7 @@ export class Reddit extends Component {
                 </div>
             );
         }
+ 
         var rand = Math.floor(Math.random() * this.state.picArray.length); /* random number to select which picture to show in the array */
         var img = this.state.picArray[rand].item2;
         /* have to check because some of the imgs/gifs grabbed from reddit are imbedded deeper than just the raw file ie: not a format we can work with atm */

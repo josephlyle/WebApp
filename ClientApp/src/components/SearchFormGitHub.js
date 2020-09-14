@@ -8,7 +8,7 @@ export class SearchFormGitHub extends Component {
 
     loadingCheck() {
         if (this.props.loading) {
-            console.log("CHECK");
+            console.log("loadingCheck");
             return <img className="joey_run_spritesheet pixelart" src="https://i.ibb.co/B4JHWTt/joey-p-loading.png" alt="my mascot" />
         } else {
             return <img className="joey_idle_spritesheet pixelart" src="https://i.ibb.co/2PsbRmR/joey-p-loading.png" alt="my mascot" />

@@ -31,6 +31,7 @@ export class GitHub extends Component {
             var data = await response.json();
             this.setState({ allRepos: data, loading: false, error: false });  
         } catch { // if user doesn't exist catch it
+            console.log("CATCH");
             this.setState({ allRepos: null, loading: false, error: true });
         }
     }
