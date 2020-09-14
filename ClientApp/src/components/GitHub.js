@@ -83,15 +83,6 @@ export class GitHub extends Component {
         if (this.state.allRepos != null) {
             return (
                 <div className="git">
-                    {/*
-                    <form className="form-inline mx-auto" onSubmit={this.handleSubmit.bind(this)}>
-                        <input id="usernameInput" value={this.state.user} onChange={this.handleChange.bind(this)} className="form-control mb-5" type="text" placeholder="GitHub Username" />
-                        <input type="submit" className="btn ml-2 mb-5" value="search" />
-                        <div className="joey">
-                            <img className="joey_idle_spritesheet pixelart" src="https://i.ibb.co/2PsbRmR/joey-p-loading.png" alt="my mascot" />
-                        </div>
-                    </form>
-                    */}
                     <SearchFormGitHub loading={this.state.loading} user={this.state.user}
                         handleSubmit={this.handleSubmit.bind(this)} handleChange={this.handleChange.bind(this)}
                     />
