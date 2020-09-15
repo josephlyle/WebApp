@@ -19,7 +19,7 @@ export class GitHub extends Component {
     async handleSubmit(event) { // fetch github user
         console.log("check:", this.state.user);
         if (event) { event.preventDefault(); } // if statement let's handleSubmit be called on pageload before an event actually happens
-        const response = await fetch('api/GitHubController/getUsersRepos', {
+        const response = await fetch('api/GitHubController/getUserRepos', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

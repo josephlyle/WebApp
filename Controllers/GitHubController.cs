@@ -16,7 +16,7 @@ namespace WebApp1.Controllers
         }
 
         [HttpPost]
-        [Route("api/GitHubController/getUsersRepos")]
+        [Route("api/GitHubController/getUserRepos")]
         public async System.Threading.Tasks.Task<IActionResult> IndexAsync([FromBody] string user)
         {
             var repos = await _gitHubService.getRepos(user);
