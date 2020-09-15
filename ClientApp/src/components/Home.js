@@ -6,7 +6,7 @@ export class Home extends Component {
   render () {
     return (
         <div className="home">
-               CI pipeline 2 
+               WebApp1 CI-CD test
         </div>
     );
   }
