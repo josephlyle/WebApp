@@ -19,8 +19,7 @@ export class Home extends Component {
                 <h1>ABOUT</h1>
                 
                 <h2>Purpose
-                    <p>This webapp is a way to help me learn new concepts and practice tools like .Net, React, dependency injection, Unity, etc..</p>
-                    <p>The decision to split this application into a front and back end was to be able to practice things in an environment more indicative to the industry.</p>
+                    <p>This webapp is a way to help me learn and practice new concepts and tools like .Net, React, dependency injection, Unity, etc..</p>
                 </h2>      
                 <h2 className="about">Details
                     <p>
@@ -35,9 +34,10 @@ export class Home extends Component {
                     <p>
                         <span className="keyword">Game</span> development has always been an interest of mine.
                         I've played games my entire life and love the different emotions that they can evoke.
-                        Learning new tools like, Unity, Blender, Aesprite help drive me creatively and express myself aswell as express what I think is fun.
+                        Learning new tools like, Unity, Blender, Aesprite help drive me creatively and express myself.
                         Hopefully you'll be seeing our little, whistling alien a lot more in my soon-to-be platformer.
                     </p>
+                    <p>The decision to split this application into a front and back end was to be able to practice things in an environment more indicative to the industry.</p>
                 </h2> 
                 <h2>Me
                     <p>I guess this is the part where I tell you things you didn't need to know about me.</p>
