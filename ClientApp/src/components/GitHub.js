@@ -8,8 +8,7 @@ export class GitHub extends Component {
     }
 
     async componentDidMount() {
-        this.setState({ loading: false }); // on page load -- go to my github
-        this.handleSubmit(null); // let's page preload whatever default is in the user prop
+        this.handleSubmit(null); // let's page preload whatever default is in the user prop 
     }
 
     handleChange(event) { // enter username
@@ -17,6 +16,7 @@ export class GitHub extends Component {
     }   
 
     async handleSubmit(event) { // fetch github user
+        this.setState({ loading: true });
         console.log("check:", this.state.user);
         if (event) { event.preventDefault(); } // if statement let's handleSubmit be called on pageload before an event actually happens
         const response = await fetch('api/GitHubController/getUserRepos', {
@@ -81,35 +81,44 @@ export class GitHub extends Component {
     }
 
     render() {
-        if (this.state.allRepos != null) {
+        if (this.state.error) { // if the user can't be found
             return (
                 <div className="git">
                     <SearchFormGitHub loading={this.state.loading} user={this.state.user}
                         handleSubmit={this.handleSubmit.bind(this)} handleChange={this.handleChange.bind(this)}
                     />
+                    hold up: user,  {this.state.user},  does not exist.
+                </div>
+            );
+        } else if (this.state.allRepos != null) {
+            return (
+               <div className="git">
+                    <SearchFormGitHub loading={this.state.loading} user={this.state.user}
+                        handleSubmit={this.handleSubmit.bind(this)} handleChange={this.handleChange.bind(this)}
+                    />
                     {this.state.allRepos.map(repo => (
-                        <div key={repo.nodeId} id={repo.nodeId}> {/* wrap with this div so we can append another div inside when expanding readMe (include id so we know which one to append to) */ }
+                        <div key={repo.nodeId} id={repo.nodeId}> {/* wrap with this div so we can append another div inside when expanding readMe (include id so we know which one to append to) */}
                             <div className="repoList">
                                 <ul>
                                     <li className="repoName">{repo.name}</li>
-                                    <li className="repoDesc">{repo.description}</li>     
+                                    <li className="repoDesc">{repo.description}</li>
                                     <p><a className="repoUrl" href={repo.htmlUrl} target="_blank">open in github</a></p>
                                     <div className="readMe"><p className="readMe_right-align" onClick={this.readMeClick.bind(this, repo.name, repo.nodeId)}>README</p></div>
                                 </ul>
                             </div>
                         </div>
-                    ))} 
-                </div>     
+                    ))}
+               </div>
             );
         } else {
             return (
-                <div className="git">
+               <div className="git">
                     <SearchFormGitHub loading={this.state.loading} user={this.state.user}
                         handleSubmit={this.handleSubmit.bind(this)} handleChange={this.handleChange.bind(this)}
                     />
                     loading
-                </div> 
+               </div>
             );
         }
-    } 
-}
+    }
+} 

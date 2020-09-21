@@ -1,4 +1,6 @@
 ﻿import React, { Component } from 'react';
+import joeyLoading from '../images/joey-loading.png';
+import joeyLoaded from '../images/joey-loaded.png';
 
 export class Reddit extends Component {
     constructor(props) {
@@ -33,7 +35,7 @@ export class Reddit extends Component {
                     <form className="form-inline mx-auto">
                         <input className="btn ml-2 mb-5" type="button" value="next image" onClick={this.handleNextImg.bind(this)} />
                         <div className="joey joey_loading">
-                            <img className="joey_run_spritesheet pixelart" src="https://i.ibb.co/B4JHWTt/joey-p-loading.png" alt="mascot isn't loading :[" />                        
+                            <img className="joey_run_spritesheet pixelart" src={joeyLoading} alt="mascot isn't loading :[" />                        
                         </div>
                     </form>
                     <p>loading</p>         
@@ -66,16 +68,17 @@ export class Reddit extends Component {
                 <form className="form-inline mx-auto" onSubmit={this.handleNextImg.bind(this)}>  
                     <input className="btn ml-2 mb-5" type="button" value="next image" onClick={this.handleNextImg.bind(this, rand)} />
                     <div className="joey">
-                        <img className="joey_idle_spritesheet pixelart" src="https://i.ibb.co/2PsbRmR/joey-p-loading.png" alt="mascot isn't loading :[" />
+                        <img className="joey_idle_spritesheet pixelart" src={joeyLoaded} alt="mascot isn't loading :[" />
                     </div>
                 </form>
-
-                <h1> {title} </h1>  
-                <img className="redditImg" src={img} width="100%" height="100%" alt=""/> 
-                <footer>
-                    <a href={permaLink} target="_blank">click here to see original post</a>
-                    <p className="foot"> pool: /r/spaceporn </p>
-                </footer>             
+                <div className="redditContainer">
+                    <h1> {title} </h1>  
+                    <img className="redditImg" src={img} width="100%" height="100%" alt=""/> 
+                    <footer>
+                        <a href={permaLink} target="_blank">click here to see original post</a>
+                        <p className="foot">  </p>
+                    </footer>
+                </div>
             </div>
         );
     }

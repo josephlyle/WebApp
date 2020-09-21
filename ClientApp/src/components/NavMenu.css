@@ -1,3 +1,4 @@
 ﻿.nav {
-    text-align: right;
+    background-clip: content-box;
+    padding-left: 5vh;
 }

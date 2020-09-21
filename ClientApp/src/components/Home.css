@@ -1,0 +1,52 @@
+﻿.home {
+    color: #d4d4dc; /*light grey*/
+    position: relative;
+}
+
+.home h1 {
+    margin-top: 3vh;
+    margin-bottom: -5vh;
+    font-family: Verdana;
+    font-weight: 800;
+    font-size: 5vh;
+}
+
+.home h2{
+    text-align: left;
+    margin: 10vh;
+    font-family: "Lucida Console", Courier, monospace;
+    font-size: 3.5vh;
+    color: #a0d2eb; /*light blue*/
+}
+
+.home h2 p{
+    text-align: left;
+    font-size: 2.5vh;
+    margin-top: 10px;
+    color: #d4d4dc; /*light grey*/
+    margin-left: 2vh;
+}
+
+.keyword {
+    color: #a0d2eb;
+}
+
+.joeyWhistleContainer {
+    width: calc(6vh * var(--pixel-size));
+    overflow: hidden;
+    position: absolute;
+    pointer-events: none; /* lets you click through element */
+    margin-top: -8.1vh;
+    margin-left: 51.5%;
+}
+
+.joey_whistle_spritesheet {
+    animation: whistle 1s steps(6) infinite;
+    width: calc(38vh * var(--pixel-size));
+}
+
+@keyframes whistle {
+    100% {
+        transform: translate3d(-100%,0,0);
+    }
+}

@@ -17,9 +17,8 @@ namespace WebApp1.Controllers
         public ActionResult Index()
         {
             var topPosts = _redditService.getHotPosts("spaceporn", 100);
-// TODO: create another one of these so we can combine these
-            //var topPostsEarth = _redditService.getTopPosts("earthporn", 100);
-
+            var topPostsEarth = _redditService.getHotPosts("earthporn", 50);
+            topPosts.AddRange(topPostsEarth);
             return Ok(topPosts);
         }
     }

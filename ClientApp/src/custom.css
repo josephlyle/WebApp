@@ -8,11 +8,6 @@
     padding-bottom: 50px;
 }
 
-.home { 
-    color: white;
-    font-size: 30px;
-}
-
 .git, .reddit {
     color: white;
 }
@@ -125,9 +120,10 @@ footer a {
     width: calc(64px * var(--pixel-size));
     height: calc(64px * var(--pixel-size));
     overflow: hidden;
+    position: absolute;
+    pointer-events: none; /* lets you click through element */
     margin-left: -100px;
     margin-top: -75px;
-    position: absolute;
 }
 
 .pixelart {
@@ -147,8 +143,11 @@ footer a {
     width: calc(256px * var(--pixel-size));
 }
 
-.redditImg{ 
-    max-height: 100vh;
+.redditContainer{ 
+}
+.redditImg{
+    max-width: 100%;
+    height: auto;
 }
 
 @keyframes btnFeedback {

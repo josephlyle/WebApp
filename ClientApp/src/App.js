@@ -4,8 +4,8 @@ import { Layout } from './components/Layout';
 import { Home } from './components/Home';
 import { GitHub } from './components/GitHub';
 import { Reddit } from './components/Reddit';
-
-import './custom.css'
+import { Game } from './components/Game'
+import './custom.css';
 
 export default class App extends Component {
     static displayName = App.name;
@@ -16,6 +16,7 @@ export default class App extends Component {
         <Route exact path='/' component={Home} />
         <Route path='/github' component={GitHub} />
         <Route path='/reddit' component={Reddit} />
+        <Route path='/game' component={Game} />
       </Layout>
     );
   }
