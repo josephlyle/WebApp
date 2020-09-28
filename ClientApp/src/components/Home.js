@@ -42,7 +42,7 @@ export class Home extends Component {
                 <h2>Me
                     <p>I guess this is the part where I tell you things you didn't need to know about me.</p>
                     <p>
-                        In my freetime I enjoy, bouldering, pottery, working out, reading, biking, video games, and in the beforetime--hanging out with friends.
+                        In my freetime I enjoy, bouldering, pottery, working out, reading, biking, video games, and hanging out with friends.
                     </p>
                     <p>
                         I aspire to become a better and more fluent programmer. There is always something to learn and I hope to never lose the drive towards that.
