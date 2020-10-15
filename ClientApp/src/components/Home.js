@@ -24,7 +24,7 @@ export class Home extends Component {
                 <h2 className="about">Details
                     <p>
                         The <span className="keyword">github</span> page of this application is a simple github search.
-                        Mainly used to showcase my personal github I thought it was appropriate to expand on the functionality of the page by letting the user search github itself.
+                        Mainly used to showcase my personal github, I thought it was appropriate to expand on the functionality of the page by letting the user search github itself.
                         I was also having fun messing around with CSS keyframing and how that can apply to elements within the dom.
                     </p>
                     <p>
@@ -37,7 +37,7 @@ export class Home extends Component {
                         Learning new tools like, Unity, Blender, Aesprite help drive me creatively and express myself.
                         Hopefully you'll be seeing our little, whistling alien a lot more in my soon-to-be platformer.
                     </p>
-                    <p>The decision to split this application into a front and back end was to be able to practice things in an environment more indicative to the industry.</p>
+                    <p>The <span className="keyword">design</span> to split this application into a front and back end was to be able to practice things in an environment more indicative to the industry.</p>
                 </h2> 
                 <h2>Me
                     <p>I guess this is the part where I tell you things you didn't need to know about me.</p>
